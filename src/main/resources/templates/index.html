@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="description" content="動作確認用Webアプリケーション" />
+		<title>ecsfgex</title>
+	</head>
+	<body>
+		<div>
+			<p th:text="${contents}">ecsfgex default text on thymeleaf template!!</p>
+		</div>
+		<div>
+			<p>ああああああああ</p>
+		</div>
+		<ul>
+			<li><a href="https://github.com/hyakutem/ecsfgex" target="_blank">ソースコード - https://github.com/hyakutem/ecsfgex</a></li>
+			<li><a href="/actuator">/actuator</a></li>
+			<li><a href="/delay/1000">指定時間Sleepして"OK"を返す - /delay/{millis}</a></li>
+			<li><a href="/rdelay/1000">指定時間以内でランダムにSleepして"OK"を返す - /rdelay/{millis}</a></li>
+			<li><a href="/load/cpu">CPUに少し負荷かける - /load/cpu</a></li>
+			<li><a href="/load/fu0101/500">CPUに少し負荷かける - /load/fu0101/{count}</a></li>
+		</ul>
+	</body>
+</html>
