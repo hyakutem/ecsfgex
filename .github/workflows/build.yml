@@ -1,0 +1,20 @@
+name: Java CI with self-hosted VM
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: [self-hosted, linux, x64]
+    steps:
+      # https://github.com/actions/checkout
+      - uses: actions/checkout@v4
+
+      # https://github.com/actions/setup-java
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'corretto'
+          java-version: '11'
+          cache: 'gradle'
+          architecture: x64
+      - name: Build with Gradle
+        run: ./gradlew build --no-daemon
