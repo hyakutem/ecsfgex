@@ -45,11 +45,9 @@ jib {
 	to {
 		image = 'ghcr.io/hyakutem/ecsfgex'
 		tags = ["${project.version}"]
-		auth {
+		//auth {
       //username = 'AWS'
       //password = 'aws ecr get-login-password --region ap-northeast-1'.execute().text.trim()
-			username = 'hyakutem'
-			password = System.getenv('GHCR_TOKEN') ?: ''
-		}
+		//}
 	}
 }

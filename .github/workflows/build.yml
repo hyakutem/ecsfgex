@@ -21,6 +21,4 @@ jobs:
         run: ./gradlew build --no-daemon
 
       - name: Build and Push Container Image
-        run: ./gradlew jib --no-daemon
-        env:
-          GHCR_TOKEN: ${{ secrets.GHCR_TOKEN }}
+        run: ./gradlew jib -Djib.to.auth.username=hyakutem -Djib.to.auth.password=${{ secrets.GHCR_TOKEN }} --no-daemon
