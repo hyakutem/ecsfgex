@@ -17,8 +17,8 @@ jobs:
           java-version: '11'
           cache: 'gradle'
           architecture: x64
-      - name: Build with Gradle
-        run: ./gradlew build --no-daemon
 
+      # build java and create container image using Jib and push image to the registry
+      # https://docs.github.com/ja/actions/security-guides/automatic-token-authentication
       - name: Build and Push Container Image
-        run: ./gradlew jib -Djib.to.auth.username=hyakutem -Djib.to.auth.password=${{ secrets.GITHUB_TOKEN }} --no-daemon --stacktrace
+        run: ./gradlew jib -Djib.to.auth.username=${{ github.actor }} -Djib.to.auth.password=${{ secrets.GITHUB_TOKEN }} --no-daemon --stacktrace

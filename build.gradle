@@ -40,11 +40,14 @@ tasks.named('test') {
 
 jib {
 	from {
-		image = 'amazoncorretto:11-al2023'
+		// digestを指定しないとJibがImmutableにならないぞと脅してくるので追加
+		image = 'amazoncorretto:11-al2023-headless@sha256:2251663364120506240dae6a9e8e4df1225841065b227db98338e24b23b12004'
 	}
 	to {
+		// これで、現在のVersion(ex:0.0.1-snapshot)とlatestのTagを付与してくれる
 		image = 'ghcr.io/hyakutem/ecsfgex'
 		tags = ["${project.version}"]
+		// 認証の設定はgradleの設定には書かずに、actions側で指定する方が良いかも
 		//auth {
       //username = 'AWS'
       //password = 'aws ecr get-login-password --region ap-northeast-1'.execute().text.trim()
