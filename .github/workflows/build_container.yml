@@ -1,11 +1,10 @@
-name: Java CI with self-hosted VM
+name: Java CI with self-hosted actions container
 
-on:
-  push
+on: workflow_dispatch
 
 jobs:
   build:
-    runs-on: [self-hosted, linux, x64, VM]
+    runs-on: [self-hosted, linux, x64, CONTAINER]
     steps:
       # https://github.com/actions/checkout
       - uses: actions/checkout@v4

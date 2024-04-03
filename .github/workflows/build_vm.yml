@@ -1,0 +1,23 @@
+name: Java CI with self-hosted VM
+
+on: workflow_dispatch
+
+jobs:
+  build:
+    runs-on: [self-hosted, linux, x64, VM]
+    steps:
+      # https://github.com/actions/checkout
+      - uses: actions/checkout@v4
+
+      # https://github.com/actions/setup-java
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'corretto'
+          java-version: '11'
+          cache: 'gradle'
+          architecture: x64
+
+      # build java and create container image using Jib and push image to the registry
+      # https://docs.github.com/ja/actions/security-guides/automatic-token-authentication
+      - name: Build and Push Container Image
+        run: ./gradlew jib -Djib.to.auth.username=${{ github.actor }} -Djib.to.auth.password=${{ secrets.GITHUB_TOKEN }} --no-daemon --stacktrace
