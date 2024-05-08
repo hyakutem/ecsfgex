@@ -20,5 +20,16 @@
 			<li><a href="/load/cpu">CPUに少し負荷かける - /load/cpu</a></li>
 			<li><a href="/load/fu0101/500">CPUに少し負荷かける - /load/fu0101/{count}</a></li>
 		</ul>
+		<div>
+			<div>環境変数一覧</div>
+			<table border="1">
+				<tr><th>No</th><th>KEY</th><th align="left">VALUE</th></tr>
+				<tr th:each="e,status : ${envMap}">
+					<td th:text="${status.count}">1</td>
+					<td th:text="${e.key}">key</td>
+					<td th:text="${e.value}">value</td>
+				</tr>
+			</table>
+		</div>
 	</body>
 </html>
