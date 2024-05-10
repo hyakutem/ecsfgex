@@ -22,6 +22,7 @@ public class IndexController {
 	String index(Model model) {
 		model.addAttribute("contents", contents);
 		model.addAttribute("envMap", new TreeMap<String,String>(System.getenv()));
+	  model.addAttribute("availableProcessors", Runtime.getRuntime().availableProcessors());
 		return "index";
 	}
 
