@@ -7,7 +7,7 @@ plugins {
 }
 
 group = 'com.example'
-version = '0.0.1-SNAPSHOT'
+version = '0.0.2-SNAPSHOT'
 
 java {
 	sourceCompatibility = 'VERSION_11'
@@ -42,7 +42,9 @@ tasks.named('test') {
 jib {
 	from {
 		// digestを指定しないとJibがImmutableにならないぞと脅してくるので追加
-		image = 'amazoncorretto:11-al2023-headless@sha256:2251663364120506240dae6a9e8e4df1225841065b227db98338e24b23b12004'
+		//image = 'amazoncorretto:11-al2023-headless@sha256:2251663364120506240dae6a9e8e4df1225841065b227db98338e24b23b12004'
+		//でもmultiarchビルドしたいので一旦コメント
+		image = 'amazoncorretto:11-al2023-headless'
 	}
 	to {
 		// これで、現在のVersion(ex:0.0.1-snapshot)とlatestのTagを付与してくれる
@@ -54,4 +56,20 @@ jib {
       //password = 'aws ecr get-login-password --region ap-northeast-1'.execute().text.trim()
 		//}
 	}
+	container {
+		jvmFlags = [
+			'-XshowSettings',
+			'-XX:+PrintFlagsFinal'
+		]
+	}
+  platforms {
+    platform {
+      architecture = 'amd64'
+      os = 'linux'
+    }
+    platform {
+      architecture = 'arm64'
+      os = 'linux'
+    }
+  }
 }
