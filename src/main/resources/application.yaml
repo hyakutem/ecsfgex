@@ -19,6 +19,17 @@ management:
   health:
     defaults:
       enabled: true
+  info:
+    env:
+      enabled: true
+    build:
+      enabled: true
+    git:
+      mode: "full"
+  # prometheusのmetrics出力にapplication識別用のタグを追加する
+  metrics:
+    tags:
+      application: "ecsfgex"
 
 ecsfgex:
   contents: "ecsfgex default text on application.yml !!"
